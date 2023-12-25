@@ -25,4 +25,20 @@ fn find_user(name: &str) -> Option<i32> {
     }
 }
 
-fn main() {}
+fn run_all(name: &str) {
+    let user = find_user(name).map(|uid| User {
+        user_id: uid,
+        name: name.to_owned(),
+    });
+    match user {
+        Some(found_user) => println!("uid: {}, name: {}", found_user.user_id, found_user.name),
+        None => println!("User \'{}\' not found", name),
+    }
+}
+
+fn main() {
+    run_all("sam");
+    run_all("matt");
+    run_all("katie");
+    run_all("donald");
+}
